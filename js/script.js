@@ -89,11 +89,20 @@ const updateWordInProgress = function (guessedLetters) {
     const wordUpper = word.toUpperCase();
     const wordArray = wordUpper.split("");
     const revealWord = [];
-    for (const letter of wordArray); 
+    for (const letter of wordArray){ 
     if (guessedLetters.includes(letter)){
         revealWord.push(letter.toUpperCase());
     } else {
-        revealWord.push("●")
+        revealWord.push("●")}
     };
     wordInProgress.innerText=revealWord.join("");
+    checkWin();
+};
+
+//function to check if player won
+const checkWin = function(){
+    if (word.toUpperCase () === wordInProgress.innerText){
+        message.classList.add("win");
+        message.innerHTML = '<p class="highlight">You guessed correct the word! Congrats!</p>';
+    };
 };
