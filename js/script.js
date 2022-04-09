@@ -62,11 +62,38 @@ const playerInput = function(input){
 //capture the input
 
 const makeGuess = function (letter){
-    letter.toUpperCase();
+    letter = letter.toUpperCase();
     if (guessedLetters.includes(letter)){
         message.innerText = "You already guessed this letter!";
     } else {
         guessedLetters.push(letter);
         console.log(guessedLetters);
+        showGuessedLetters();
+        updateWordInProgress(guessedLetters);
+    }
+};
+
+//function to show guessed letters
+const showGuessedLetters = function () {
+    guessedLettersList.innerHTML = ""; //empty the ul
+    for (const letter of guessedLetters) {
+        const listItem = document.createElement("li");
+        listItem.innerText = letter;
+        guessedLettersList.append(listItem); 
+    }
+};
+
+//function to update word in progress
+
+const updateWordInProgress = function (guessedLetters) {
+    const wordUpper = word.toUpperCase();
+    const wordArray = wordUpper.split("");
+    const revealWord = [];
+    for (const letter of wordArray); 
+    if (guessedLetters.includes(letter)){
+        revealWord.push(letter.toUpperCase());
+    } else {
+        revealWord.push("●")
     };
+    wordInProgress.innerText=revealWord.join("");
 };
